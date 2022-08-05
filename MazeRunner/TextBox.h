@@ -1,6 +1,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include <sstream>
+
 using namespace sf;
 
 #define LIMIT 4
@@ -8,21 +9,17 @@ using namespace sf;
 
 class TextBox
 {
-public:
-	
-	TextBox(Vector2f pos);
+	public:
+		TextBox(Vector2f pos);
+		void input(Event evnt);
+		void draw(RenderWindow& window);
+		Text getText();
+		void setPos(Vector2f);
 
-	void input(Event evnt);
-	void draw(RenderWindow& window);
-	Text getText();
-	void setPos(Vector2f);
-private:
-	
-	Text textbox;
-	std::ostringstream text;
-	bool isSelected = false;
-	
-	void deleteLastChar();
-	void type(int charTyped);
-	
+	private:
+		Text textbox;
+		std::ostringstream text;
+		bool isSelected = false;
+		void deleteLastChar();
+		void type(int charTyped);
 };

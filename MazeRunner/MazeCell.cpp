@@ -28,13 +28,10 @@ MazeCell::MazeCell(Vector2f position, Vector2f size, int column, int row, float 
 	this->walls[West].setFillColor(wallColor);
 }
 
-MazeCell::~MazeCell()
-{
-}
+MazeCell::~MazeCell() {}
 
 void MazeCell::draw(RenderWindow* window)
 {
-	 
       if(this->isVisited)
 		  window->draw(this->backGround);
 	  if (this->activeWalls[East]) 
@@ -45,8 +42,6 @@ void MazeCell::draw(RenderWindow* window)
 		  window->draw(this->walls[North]);
 	  if (this->activeWalls[West])
 		  window->draw(this->walls[West]);
-	  
-
 }
 
 void MazeCell::setActiveWalls(Path dir)
