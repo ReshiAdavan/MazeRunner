@@ -1,10 +1,10 @@
-
 Debug/MazeRunner.exe
 Debug/MazeRunner.exe.lastcodeanalysissucceeded
 Debug/MazeRunner.ilk
 Debug/MazeRunner.pdb
 *.ipch
 *.idb
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -20,5 +20,5 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
-# Visual Studio 2015/2017 cache/options directory
+# Visual Studio cache/options directory
 .vs/
