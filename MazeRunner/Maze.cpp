@@ -213,7 +213,7 @@ MazeCell* Maze::randomCell(MazeCell* cell)
 	if ( row > 0 ) 
 	{
 	    temp = getCell( Vector2i( column, row - 1 ));
-        if(!temp->isVisited)	
+		if(!temp->isVisited)
 			random.push_back(temp);
 	}
 
@@ -243,6 +243,7 @@ MazeCell* Maze::randomCell(MazeCell* cell)
 	
 	if (random.size() == 0)
 		return nullptr;
+
 	else
 		return random[std::rand() % random.size()];
 }
@@ -280,11 +281,14 @@ void Maze::removeWalls(MazeCell* current, MazeCell* next)
 
 void Maze::charConverter(int row, int colm, int CellRow, int CellColm)
 {
-	if (charVector[row][colm + 1] == ' ')cells[CellRow][CellColm]->removeWalls(East);
-	if (charVector[row][colm - 1] == ' ')cells[CellRow][CellColm]->removeWalls(West);
-	if (charVector[row - 1][colm] == ' ')cells[CellRow][CellColm]->removeWalls(North);
-	if (charVector[row + 1][colm] == ' ')cells[CellRow][CellColm]->removeWalls(South);
-
+	if (charVector[row][colm + 1] == ' ')
+		cells[CellRow][CellColm]->removeWalls(East);
+	if (charVector[row][colm - 1] == ' ')
+		cells[CellRow][CellColm]->removeWalls(West);
+	if (charVector[row - 1][colm] == ' ')
+		cells[CellRow][CellColm]->removeWalls(North);
+	if (charVector[row + 1][colm] == ' ')
+		cells[CellRow][CellColm]->removeWalls(South);
 	cells[CellRow][CellColm]->isVisited = true;
 }
 
@@ -492,10 +496,7 @@ void Maze::DFS()
 	}
 
 	else if (endMaze == NULL&& startMaze != NULL)
-	{
-
 		SetEnd(cells[cellCount.y - 1][cellCount.x - 1]);
-	}
 
 	// counter to visited cells 
 	int visitedCounter = 0;
@@ -564,7 +565,6 @@ void Maze::DFS()
 
 		// reverse the path
 		std::reverse(path.begin(), path.end());
-
 		std::cout << "Visited Cells Count : " << visitedCounter << "\nPath Cell Count : " << path.size() << "\n";
 
 		int counter = 0;
@@ -695,7 +695,6 @@ void Maze::BestFirst()
 }
 void Maze::dijkstra()
 {
-
 	clearColor();
 
 	// if start and end not selected set them to default
@@ -732,7 +731,6 @@ void Maze::dijkstra()
 	node.y = startMaze->getRow();
 	node.x = startMaze->getColumn();
 
-
 	while (!dset.empty()) 
 	{
 		//cells[node.y][node.x]->setBGColor(Color::Blue);
@@ -749,39 +747,25 @@ void Maze::dijkstra()
 			if (i == 0) 
 			{
 				if (!cells[node.y][node.x]->activeWalls[North]) 
-				{
 					putcell(node.y, node.x, rr, cc, dset, distance[node.y][node.x], distance[rr][cc], root, distance);
-					//	cout << rr << "  " << cc << endl;
-				}
 			}
 
 			else if (i == 1) 
 			{
 				if (!cells[node.y][node.x]->activeWalls[South])
-				{
 					putcell(node.y, node.x, rr, cc, dset, distance[node.y][node.x], distance[rr][cc], root, distance);
-					//cout << rr << " " << cc << endl;
-				}
 			}
 
 			else if (i == 2)
 			{
 				if (!cells[node.y][node.x]->activeWalls[East])
-				{
 					putcell(node.y, node.x, rr, cc, dset, distance[node.y][node.x], distance[rr][cc], root, distance);
-					//cout << rr << " " << cc << endl;
-
-				}
 			}
 
 			else if (i == 3)
 			{
 				if (!cells[node.y][node.x]->activeWalls[West])
-				{
 					putcell(node.y, node.x, rr, cc, dset, distance[node.y][node.x], distance[rr][cc], root, distance);
-					//	cout << rr << " " << cc << endl;
-
-				}
 			}
 		}
 
@@ -825,7 +809,6 @@ void Maze::dijkstra()
 }
 void Maze::putcell(int r, int c, int rr, int cc, set<pair<int, pair<int, int>>>& dset, int distanceNood, int distanceNeighbour, vector<vector<Vector2i>>& root, vector<vector<int>>& distance)
 {
-
 	if (distanceNeighbour == -1) 
 	{
 		distanceNeighbour = distanceNood + 1;
@@ -834,6 +817,7 @@ void Maze::putcell(int r, int c, int rr, int cc, set<pair<int, pair<int, int>>>&
 		root[rr][cc] = Vector2i(r, c);
 		//	cout << root[rr][cc].x<<" root "<< root[rr][cc].y<< endl;
 	}
+
 	else if (abs(distanceNood) + 1 < abs(distanceNeighbour)) 
 	{
 		auto f = dset.find(make_pair(distanceNeighbour, make_pair(rr, cc)));
